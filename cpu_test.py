@@ -8,7 +8,7 @@ def main(args):
         exit(1)
 
     # nc = no credit, fc = full credit,
-    # vm = virtuak machine, pm = physical machine
+    # vm = virtuak machine, pm = physical machine(windows)
     accepted_args = {'nc': 'result_no_credit.txt', 'fc': 'result_full_credit.txt',
                      'vm': 'result_vm.txt', 'pm': 'result_pm.txt'}
     if args[0] not in accepted_args:
@@ -18,9 +18,17 @@ def main(args):
     test_type = args[0]
 
     timestamps = []
-    start = time.perf_counter_ns()
+    if test_type == 'pm':
+        start = time.perf_counter_ns()
+    else:
+        start = time.time_ns()
+
     for i in range(50000):
-        timer = str(time.perf_counter_ns()-start)
+        if test_type == 'pm':
+            timer = str(time.perf_counter_ns()-start)
+        else:
+            timer = str(time.time_ns()-start)
+
         if len(timer) > 9:
             timer = timer[:-9]+"."+timer[:len(timer)-9]
         else:
