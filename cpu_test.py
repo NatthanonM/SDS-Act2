@@ -41,9 +41,6 @@ def main(args):
     for e in timestamps:
         f.write(e+"\n")
     f.close()
-    # print(test_type)
-    # for e in timestamps:
-    #     print(e)
     exit(0)
 
 
